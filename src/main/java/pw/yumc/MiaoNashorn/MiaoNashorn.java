@@ -2,8 +2,6 @@ package pw.yumc.MiaoNashorn;
 
 import sun.misc.Unsafe;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import java.io.File;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -73,11 +71,11 @@ public class MiaoNashorn {
         libRootFile.mkdirs();
         log("从云端加载 Nashorn 请稍候...");
         String libRoot = libRootFile.getCanonicalPath();
-        downloadJar(libRoot, "org.openjdk.nashorn", "nashorn-core", "15.2");
-        downloadJar(libRoot, "org.ow2.asm", "asm", "9.1");
-        downloadJar(libRoot, "org.ow2.asm", "asm-commons", "9.1");
-        downloadJar(libRoot, "org.ow2.asm", "asm-tree", "9.1");
-        downloadJar(libRoot, "org.ow2.asm", "asm-util", "9.1");
+        downloadJar(libRoot, "org.openjdk.nashorn", "nashorn-core", "15.3");
+        downloadJar(libRoot, "org.ow2.asm", "asm", "9.2");
+        downloadJar(libRoot, "org.ow2.asm", "asm-commons", "9.2");
+        downloadJar(libRoot, "org.ow2.asm", "asm-tree", "9.2");
+        downloadJar(libRoot, "org.ow2.asm", "asm-util", "9.2");
         log("云端 Nashorn 已加载完成!");
     }
 
