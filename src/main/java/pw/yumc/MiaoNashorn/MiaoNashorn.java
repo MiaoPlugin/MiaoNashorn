@@ -18,7 +18,7 @@ import java.nio.file.StandardCopyOption;
  * @since 2016年8月29日 上午7:50:39
  */
 public class MiaoNashorn {
-    private static String MavenRepo = "https://maven.aliyun.com/repository/public";
+    private static final String MavenRepo = "https://maven.aliyun.com/repository/public";
     private static final Object ucp;
     private static final MethodHandle addURLMethodHandle;
 
@@ -58,7 +58,7 @@ public class MiaoNashorn {
                 File nashorn = new File(dir, "nashorn.jar");
                 if (nashorn.exists()) {
                     loadJar(nashorn);
-                    System.out.println("扩展目录发现 Nashorn 已加载完成!");
+                    log("扩展目录发现 Nashorn 已加载完成!");
                 }
             }
         } else {
@@ -71,11 +71,11 @@ public class MiaoNashorn {
         libRootFile.mkdirs();
         log("从云端加载 Nashorn 请稍候...");
         String libRoot = libRootFile.getCanonicalPath();
-        downloadJar(libRoot, "org.openjdk.nashorn", "nashorn-core", "15.3");
-        downloadJar(libRoot, "org.ow2.asm", "asm", "9.2");
-        downloadJar(libRoot, "org.ow2.asm", "asm-commons", "9.2");
-        downloadJar(libRoot, "org.ow2.asm", "asm-tree", "9.2");
-        downloadJar(libRoot, "org.ow2.asm", "asm-util", "9.2");
+        downloadJar(libRoot, "org.openjdk.nashorn", "nashorn-core", "15.4");
+        downloadJar(libRoot, "org.ow2.asm", "asm", "9.3");
+        downloadJar(libRoot, "org.ow2.asm", "asm-commons", "9.3");
+        downloadJar(libRoot, "org.ow2.asm", "asm-tree", "9.3");
+        downloadJar(libRoot, "org.ow2.asm", "asm-util", "9.3");
         log("云端 Nashorn 已加载完成!");
     }
 
@@ -84,7 +84,7 @@ public class MiaoNashorn {
     }
 
     private static void downloadJar(String engineRoot, String groupId, String artifactId, String version) throws Throwable {
-        File lib = new File(engineRoot, artifactId + ".jar");
+        File lib = new File(engineRoot, String.format("%s-%s.jar", artifactId, version));
         if (!lib.exists()) {
             log("正在下载类库 %s 版本 %s 请稍候...", artifactId, version);
             Files.copy(new URL(MavenRepo +
